@@ -1,0 +1,18 @@
+.breadcrumb{
+    .breadcrumb__menu{
+        &--item{
+            @apply inline-flex items-center justify-center;
+            &:last-child{
+                span.icon{
+                    @apply text-gray-900;
+                }
+                .breadcrumb__menu--link{
+                    @apply text-gray-900 pointer-events-none;
+                }
+            }
+        }
+        &--link{
+            @apply capitalize text-sm font-semibold text-gray-700 hover:text-gray-900 transition-all duration-200;
+        }
+    }
+}

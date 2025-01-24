@@ -1,0 +1,15 @@
+.section__container {
+  .list-card {
+    .card {
+      transition: transform 0.3s ease, z-index 0s 0.3s, opacity 0.3s ease;
+      z-index: 1;
+      opacity: 1; /* Mặc định card có độ sáng bình thường */
+
+      &:hover {
+        transform: scale(1.03); /* Phóng to card khi hover */
+        z-index: 10; /* Card hover sẽ có z-index cao hơn các card khác */
+        opacity: 1; /* Card hover không bị mờ */
+      }
+    }
+  }
+}

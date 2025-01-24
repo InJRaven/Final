@@ -1,0 +1,3 @@
+.card {
+  @apply flex flex-col items-stretch justify-center bg-light rounded-[0.6rem] shadow-card cursor-pointer transition-all duration-300 relative;
+}

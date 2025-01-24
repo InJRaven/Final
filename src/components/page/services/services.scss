@@ -1,0 +1,11 @@
+.table{
+    @apply w-full flex items-center justify-center mt-[5rem];
+    table{
+        @apply w-[70%] ;
+        tbody{
+            tr td{
+                @apply border border-gray-900 py-[0.8rem]
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.header {
+  @apply row-start-1 col-start-1;
+  &__menu {
+    &--link {
+      @apply relative text-light-active;
+      &::before {
+        @apply absolute bottom-0 left-1/2 w-0 h-[2px] transform -translate-x-1/2 bg-light transition-all duration-300 ease-in-out;
+        content: "";
+        &:hover {
+          @apply w-1/2;
+        }
+      }
+
+      &.active {
+        @apply font-semibold text-light;
+        &::before {
+          @apply absolute bottom-0 left-1/2 w-1/2 h-[2px] transform -translate-x-1/2 bg-light;
+          content: "";
+        }
+      }
+    }
+  }
+}
