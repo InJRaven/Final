@@ -16,7 +16,7 @@ const LoadingPage = () => {
     >
       <div className="flex flex-col items-center h-full">
         <ImSpinner10 className="w-16 h-16 text-gray-900 animate-spin mb-4" />
-        <p className="text-gray-600 text-lg font-semibold">Loading...</p>
+        {/* <p className="text-gray-600 text-lg font-semibold">Loading...</p> */}
       </div>
     </div>
   );
