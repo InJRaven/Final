@@ -11,9 +11,11 @@ import Card from "../../ui/Card/Card";
 import { getRelated, getSlugProduct } from "../../../utils/utils";
 
 import './slug.scss';
+import { useDynamicHelmet } from "../../../context/DynamicHelmetContext";
 const Slug = () => {
   const { language } = useContext(AppContext);
   const { slug } = useParams();
+  const { setTitle, setMetaTag } = useDynamicHelmet();
   const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
   const [newRelated, setNewRelated] = useState([]);
@@ -28,6 +30,11 @@ const Slug = () => {
 
         if (productResponse.status === 200) {
           setProduct(productResponse.data.data);
+          setTitle(`${productResponse.data.data.name}`);
+          setMetaTag({
+            ogTitle: `${productResponse.data.data.name}`,
+            ogImage:`${productResponse.data.data.main_image}`
+          })
           setSelectedPreview(productResponse.data.data.images[0]?.path || "");
         }
 
@@ -36,13 +43,14 @@ const Slug = () => {
         }
       } catch (error) {
         console.error("Failed to fetch data:", error);
+        setTitle("Error Loading Product");
       }
     };
 
     fetchData();
-  }, [slug, language]);
+  }, [slug, language, setTitle, setMetaTag]);
 
-
+console.log(product)
   const images = useMemo(() => product?.images || [], [product]);
 
   const categoryId = useMemo(() => product?.category?.id || "", [product]);
@@ -53,8 +61,6 @@ const Slug = () => {
   }, [images]);
   useEffect(() => {
     if (categoryId && Array.isArray(related)) {
-      console.log(categoryId);
-
       // Filter and map the related products by category_id
       const filteredRelated = related
         .filter((item) => item.category_id === categoryId)
@@ -75,8 +81,6 @@ const Slug = () => {
   const handlePreviewClick = (path) => {
     setSelectedPreview(path);
   };
-
-  console.log(newRelated);
   return (
     <>
       <section className="rol-start-2 grid grid-cols-6 gap-[4rem] py-[2rem] bg-gray-200">
@@ -140,8 +144,8 @@ const Slug = () => {
                   }
                 }}
               >
-                {images.map((item) => (
-                  <SwiperSlide key={item.id}>
+                {images.map((item, index) => (
+                  <SwiperSlide key={item.path}>
                     <div
                       className={`w-full aspect-square bg-gray-500 transition duration-200 border-[3px] ${
                         selectedPreview === item.path
@@ -193,7 +197,7 @@ const Slug = () => {
             </h2>
             <div className="grid grid-cols-4 gap-[2rem] more-product">
               {newRelated.map((item) => (
-                <Link to={`/products/${item.slug}`} key={item.category}>
+                <Link to={`/products/${item.slug}`} key={item.slug}>
                   <Card
                     url={item.main_image}
                     alt={item.name}

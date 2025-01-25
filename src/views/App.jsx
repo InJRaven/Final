@@ -1,13 +1,18 @@
 import { useRoutes } from "react-router-dom";
 import { Suspense, lazy, useContext } from "react";
-import ScrollToTop from "../utils/ScrollToTop";
-import MainLayout from "./layout/MainLayout";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import { AppContext } from "../context/AppContext";
+import ScrollToTop from "../utils/ScrollToTop";
+import { motion } from "framer-motion";
+import MainLayout from "./layout/MainLayout";
 import Breadcrumb from "../components/ui/Breadcrumb/Breadcrumb";
 import GlobalLoader from "../utils/GlobalLoader";
 import GlobalErrorBoundary from "../utils/GlobalErrorBoundary";
-import { motion } from "framer-motion";
 import Social from "../components/ui/Socail/Social";
+import { DynamicHelmetProvider } from "../context/DynamicHelmetContext";
+import DynamicHelmet from "../utils/Helmet/DynamicHelmet";
+import ApplyHelmet from "../utils/Helmet/ApplyHelmet";
+import { SettingContext } from "../context/SettingContext";
 
 // Lazy load components
 const Home = lazy(() => import("../components/page/home/home"));
@@ -16,7 +21,7 @@ const Slug = lazy(() => import("../components/page/slug/slug"));
 const Services = lazy(() => import("../components/page/services/services"));
 const Gallery = lazy(() => import("../components/page/galleries/galleries"));
 const Contact = lazy(() => import("../components/page/contact/contact"));
-const Post = lazy(() => import("../components/page/Post/post"))
+const Post = lazy(() => import("../components/page/post/post"));
 const Header = lazy(() => import("./partials/header/header"));
 const Footer = lazy(() => import("./partials/footer/footer"));
 
@@ -33,7 +38,7 @@ const MotionWrapper = ({ children }) => (
 );
 function App() {
   const { language } = useContext(AppContext);
-
+  const { loading } = useContext(SettingContext);
   const routesConfig = [
     {
       path: "/",
@@ -60,6 +65,7 @@ function App() {
             </Suspense>
           ),
           name: `${language === "vi" ? "Sản Phẩm" : "Products"}`,
+          title: `${language === "vi" ? "Sản Phẩm" : "Products"}`,
         },
         {
           path: "products/:slug",
@@ -81,6 +87,7 @@ function App() {
             </Suspense>
           ),
           name: `${language === "vi" ? "Dịch Vụ" : "Services"}`,
+          title: `${language === "vi" ? "Dịch Vụ" : "Services"}`,
         },
         {
           path: "gallery",
@@ -92,6 +99,7 @@ function App() {
             </Suspense>
           ),
           name: `${language === "vi" ? "Thư Viện Ảnh" : "Gallery"}`,
+          title: `${language === "vi" ? "Thư Viện Ảnh" : "Gallery"}`,
         },
         {
           path: "contact",
@@ -103,9 +111,10 @@ function App() {
             </Suspense>
           ),
           name: `${language === "vi" ? "Liên Hệ" : "Contact"}`,
+          title: `${language === "vi" ? "Liên Hệ" : "Contact"}`,
         },
         {
-          path:"menus/:id/post",
+          path: "menus/:id/post",
           element: (
             <Suspense fallback={<GlobalLoader />}>
               <MotionWrapper>
@@ -113,7 +122,7 @@ function App() {
               </MotionWrapper>
             </Suspense>
           ),
-        }
+        },
       ],
     },
   ];
@@ -124,27 +133,32 @@ function App() {
     location.pathname === "/service" ||
     location.pathname === "/contact" ||
     location.pathname === "/posts";
+
   return (
-    <GlobalErrorBoundary>
-      <Suspense fallback={<GlobalLoader />}>
-        <ScrollToTop />
+    <DynamicHelmetProvider>
+      <DynamicHelmet />
+      {!loading && <ApplyHelmet routesConfig={routesConfig} />}
+      <GlobalErrorBoundary>
+        <Suspense fallback={<GlobalLoader />}>
+          <ScrollToTop />
 
-        <div
-          className={`grid grid-cols-1 ${
-            hidden
-              ? "grid-rows-[auto_1fr_auto]"
-              : "grid-rows-[auto_auto_1fr_auto]"
-          } min-h-screen h-screen relative`}
-        >
-          <Header />
-          {!hidden && <Breadcrumb routes={routesConfig} />}
-          <Social />
-          {routes}
+          <div
+            className={`grid grid-cols-1 ${
+              hidden
+                ? "grid-rows-[auto_1fr_auto]"
+                : "grid-rows-[auto_auto_1fr_auto]"
+            } min-h-screen h-screen relative`}
+          >
+            <Header />
+            {!hidden && <Breadcrumb routes={routesConfig} />}
+            <Social />
+            {routes}
 
-          <Footer />
-        </div>
-      </Suspense>
-    </GlobalErrorBoundary>
+            <Footer />
+          </div>
+        </Suspense>
+      </GlobalErrorBoundary>
+    </DynamicHelmetProvider>
   );
 }
 

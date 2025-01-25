@@ -1,29 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const Social = () => {
   // Trạng thái để lưu thông báo hiển thị
-  const [copiedMessage, setCopiedMessage] = useState("");
-
-  // Hàm sao chép văn bản vào clipboard và hiển thị thông báo
-  const copyToClipboard = (text) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopiedMessage("Copied!"); // Hiển thị thông báo
-        setTimeout(() => setCopiedMessage(""), 2000); // Ẩn thông báo sau 2 giây
-      })
-      .catch(() => {
-        setCopiedMessage("Failed to copy!");
-        setTimeout(() => setCopiedMessage(""), 2000); // Ẩn thông báo sau 2 giây
-      });
-  };
 
   return (
     <div className="fixed right-[1rem] top-[50%] translate-y-[-50%] flex flex-col gap-4">
       {/* VIBER */}
-      <span
-        onClick={() => copyToClipboard("084 389 9999")} // Số điện thoại ví dụ
+      <Link
+        to="tel:+84 389 9999"
+        // Số điện thoại ví dụ
         className="cursor-pointer transition duration-300 transform hover:scale-110 hover:text-blue-500 relative"
       >
         <svg
@@ -38,16 +24,11 @@ const Social = () => {
             fill="black"
           />
         </svg>
-        {copiedMessage && (
-          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded-md shadow-lg">
-            {copiedMessage}
-          </div>
-        )}
-      </span>
+      </Link>
 
       {/* FACEBOOK */}
       <Link
-        href="https://www.facebook.com/anphanka"
+        to="https://www.facebook.com/anphanka"
         target="_blank"
         rel="noopener noreferrer"
         className="transition duration-300 transform hover:scale-110 hover:text-blue-500"
@@ -71,8 +52,8 @@ const Social = () => {
       </Link>
 
       {/* ZALO */}
-      <span
-        onClick={() => copyToClipboard("084 389 9999")} // Số điện thoại ví dụ
+      <Link
+        to={"https://zalo.me/0843.89.9999"}
         className="cursor-pointer transition duration-300 transform hover:scale-110 hover:text-green-500 relative"
       >
         <svg
@@ -107,12 +88,8 @@ const Social = () => {
             fill="#2962FF"
           />
         </svg>
-        {copiedMessage && (
-          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded-md shadow-lg">
-            {copiedMessage}
-          </div>
-        )}
-      </span>
+
+      </Link>
     </div>
   );
 };

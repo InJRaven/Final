@@ -17,7 +17,7 @@ const SideBar = ({menu}) => {
   console.log(menu)
  
   return (
-    <aside className="w-full h-fit col-start-1 col-span-1 bg-light border border-light-active flex flex-col items-stretch rounded-[0.6rem] sidebar">
+    <aside className="w-full h-fit col-start-1 col-span-1 bg-light border border-light-active flex flex-col gap-[0.5rem] items-stretch rounded-[0.6rem] sidebar">
       {menu.map((item, index) => (
         <div key={item.id} className="w-full">
           <NavLink
@@ -49,7 +49,7 @@ const SideBar = ({menu}) => {
                   key={child.id}
                   to={`/menus/${child.id}/post`}
                   target="_blank"
-                  className="inline-flex w-full items-center text-sm text-gray-500 font-medium transition duration-200 hover:text-dark hover:bg-gray-100 py-2"
+                  className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 sidebar-link px-4 py-2"
                 >
                   {child.translations.find((t) => t.locale === "vi")?.name}
                 </NavLink>

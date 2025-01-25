@@ -65,7 +65,11 @@ const Products = () => {
     newSearchParams.set("page", newPage);
     setSearchParams(newSearchParams);
   };
-
+  const handleProductClick = (productName) => {
+    document.title = `${productName} - ${
+      language === "vi" ? "Chi Tiết Sản Phẩm" : "Product Details"
+    }`;
+  };
   console.log(meta);
 
   const title = [
@@ -132,6 +136,7 @@ const Products = () => {
                     alt={item.name}
                     nameCard={item.name}
                     price={`${language === "vi" ? "Từ" : "From"} ${item.price}`}
+                    onClick={() => handleProductClick(item.name)}
                   />
                 </Link>
               ))}
