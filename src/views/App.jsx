@@ -6,7 +6,7 @@ import DynamicHelmet from "../utils/Helmet/DynamicHelmet";
 import ApplyHelmet from "../utils/Helmet/ApplyHelmet";
 import { SettingContext } from "../context/SettingContext";
 import ScrollToTop from "../utils/ScrollToTop";
-import GlobalErrorBoundary from "../utils/GlobalErrorBoundary";
+import GlobalErrorBoundary from "../utils/ErrorBoundary/GlobalErrorBoundary";
 import Header from "./partials/header/header";
 import Footer from "./partials/footer/footer";
 import Breadcrumb from "../components/ui/Breadcrumb/Breadcrumb";
@@ -20,6 +20,7 @@ import Services from "../components/page/services/services";
 import Gallery from "../components/page/galleries/galleries";
 import Contact from "../components/page/contact/contact";
 import Post from "../components/page/post/post";
+import LoadingPage from "../components/page/Loading/LoadingPage";
 function App() {
   const { language } = useContext(AppContext);
   const { loading } = useContext(SettingContext);
@@ -83,6 +84,7 @@ function App() {
       {!loading && <ApplyHelmet routesConfig={routesConfig} />}
       <GlobalErrorBoundary>
         <ScrollToTop />
+        <LoadingPage />
         <div
           className={`grid grid-cols-1 ${
             hidden

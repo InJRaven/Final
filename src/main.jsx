@@ -7,15 +7,19 @@ import App from "./views/App.jsx";
 import AppProvider from "./context/AppContext.jsx";
 import "./assets/scss/index.scss";
 import SettingProvider from "./context/SettingContext.jsx";
+import { LoadingProvider } from "./context/LoadingContext.jsx";
+
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <SettingProvider>
         <AppProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <LoadingProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </LoadingProvider>
         </AppProvider>
       </SettingProvider>
     </HelmetProvider>

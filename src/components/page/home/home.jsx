@@ -6,10 +6,12 @@ import SideBar from "../../../views/partials/sidebar/sidebar";
 import Advertisements from "./advertisements/Advertisements";
 import Section from "./section/Section";
 import Banner from "./banner/Banner";
+import { useLoading } from "../../../context/LoadingContext";
 
 const Home = () => {
   const { settings } = useContext(SettingContext);
   const { language } = useContext(AppContext);
+  const { startLoading, stopLoading } = useLoading();
   const [related, setRelated] = useState([]);
   const [menu, setMenu] = useState([]);
   const advertisements = useMemo(
@@ -19,10 +21,19 @@ const Home = () => {
   const banners = useMemo(() => settings?.banners || [], [settings]);
 
   useEffect(() => {
-    fetchRelatedData();
-    fetchMenuData();
-  }, [language]);
+    const fetchData = async () => {
+      startLoading(); // Hiển thị trạng thái loading
+      try {
+        await Promise.all([fetchRelatedData(), fetchMenuData()]); // Chờ cả hai API hoàn tất
+      } catch (error) {
+        console.log("Fetch Error: ", error);
+      } finally {
+        stopLoading(); // Ẩn trạng thái loading
+      }
+    };
 
+    fetchData();
+  }, [language]);
   const fetchRelatedData = async () => {
     try {
       const response = await getRelated();
@@ -51,7 +62,7 @@ const Home = () => {
     `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}`,
   ];
 
-  console.log(menu)
+  console.log(menu);
   return (
     <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem]">
       {menu && <SideBar menu={menu} />}

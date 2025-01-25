@@ -18,10 +18,10 @@ const SideBar = ({ menu }) => {
           onMouseLeave={() => setOpenDropdown(null)} // Đóng dropdown khi rời chuột khỏi element
         >
           {item.children && item.children.length > 0 ? (
-            <div
-              className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 cursor-pointer"
-            >
-              <span>{item.translations.find((t) => t.locale === "vi")?.name}</span>
+            <div className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 cursor-pointer">
+              <span>
+                {item.translations.find((t) => t.locale === "vi")?.name}
+              </span>
               {openDropdown === index ? (
                 <ChevronDownIcon className="h-6 w-6" />
               ) : (
@@ -34,7 +34,9 @@ const SideBar = ({ menu }) => {
               target="_blank"
               className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2"
             >
-              <span>{item.translations.find((t) => t.locale === "vi")?.name}</span>
+              <span>
+                {item.translations.find((t) => t.locale === "vi")?.name}
+              </span>
             </NavLink>
           )}
           {item.children &&

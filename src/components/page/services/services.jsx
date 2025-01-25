@@ -3,13 +3,17 @@ import DOMPurify from "dompurify";
 import { AppContext } from "../../../context/AppContext";
 import { getServices } from "../../../utils/utils";
 import "./services.scss";
+import { useLoading } from "../../../context/LoadingContext";
 const Services = () => {
   const { language } = useContext(AppContext);
+  const { startLoading, stopLoading } = useLoading();
+
   const [content, setContext] = useState({});
   useEffect(() => {
     fetchServicesData();
   }, [language]);
   const fetchServicesData = async () => {
+    startLoading();
     try {
       const response = await getServices();
       if (response.status === 200) {
@@ -17,9 +21,10 @@ const Services = () => {
       }
     } catch (error) {
       console.log("Faild Fetch Data Services: ", error);
+    } finally {
+      stopLoading();
     }
   };
-
 
   const sanitizedHtml =
     content && content[0]?.content

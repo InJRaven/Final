@@ -4,17 +4,22 @@ import { useSearchParams } from "react-router-dom";
 import { getCategoriesGallery, getGallery } from "../../../utils/utils";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import Pagination from "../../ui/Pagination/Pagination";
+import { useLoading } from "../../../context/LoadingContext";
 
 const Gallery = () => {
   const { language } = useContext(AppContext);
+  const { startLoading, stopLoading } = useLoading();
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [images, setImages] = useState([]);
   const [meta, setMeta] = useState({});
   const [categories, setCategories] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isCategoriesLoading, setIsCategoriesLoading] = useState(true);
+  const [isImagesLoading, setIsImagesLoading] = useState(true);
 
-  const modalRef = useRef(null); // Ref cho modal
+  const modalRef = useRef(null);
   const selectedCategory = searchParams.get("category") || "";
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
@@ -33,55 +38,48 @@ const Gallery = () => {
     fetchCategoriesData();
   }, [language]);
 
-  // Lắng nghe phím ESC trên modal
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        closeModal();
+  // Hàm wrapper để tải dữ liệu với loading
+  const fetchDataWithLoading = useCallback(
+    async (fetchFunc, setData, setLoading) => {
+      setLoading(true);
+      startLoading();
+      try {
+        const response = await fetchFunc();
+        if (response.status === 200) {
+          setData(response.data);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+      } finally {
+        setLoading(false);
+        stopLoading();
       }
-    };
+    },
+    [startLoading, stopLoading]
+  );
 
-    const modalElement = modalRef.current;
+  const fetchGalleriesData = useCallback(() => {
+    fetchDataWithLoading(
+      () =>
+        getGallery({
+          ...(selectedCategory ? { category: selectedCategory } : {}),
+          page: currentPage,
+        }),
+      (data) => {
+        setImages(data.data);
+        setMeta(data.meta);
+      },
+      setIsImagesLoading
+    );
+  }, [fetchDataWithLoading, selectedCategory, currentPage]);
 
-    if (isModalVisible && modalElement) {
-      modalElement.addEventListener("keydown", handleKeyDown);
-      modalElement.focus(); // Đảm bảo modal nhận focus để lắng nghe sự kiện
-    }
-
-    return () => {
-      if (modalElement) {
-        modalElement.removeEventListener("keydown", handleKeyDown);
-      }
-    };
-  }, [isModalVisible]);
-
-  const fetchGalleriesData = async () => {
-    try {
-      const response = await getGallery({
-        ...(selectedCategory ? { category: selectedCategory } : {}),
-        page: currentPage,
-      });
-
-      if (response.status === 200) {
-        setImages(response.data.data);
-        setMeta(response.data.meta);
-      }
-    } catch (error) {
-      console.log("Failed Fetch Galleries: ", error);
-    }
-  };
-
-  const fetchCategoriesData = async () => {
-    try {
-      const response = await getCategoriesGallery();
-
-      if (response.status === 200) {
-        setCategories(response.data);
-      }
-    } catch (error) {
-      console.log("Failed Fetch Categories Galleries: ", error);
-    }
-  };
+  const fetchCategoriesData = useCallback(() => {
+    fetchDataWithLoading(
+      getCategoriesGallery,
+      setCategories,
+      setIsCategoriesLoading
+    );
+  }, [fetchDataWithLoading]);
 
   const handlePageChange = useCallback(
     (page) => {
@@ -99,16 +97,14 @@ const Gallery = () => {
 
   const handleFilter = useCallback(
     (category) => {
+      const params = new URLSearchParams();
       if (category) {
-        setSearchParams({ category, page: "1" });
-      } else {
-        const params = new URLSearchParams(searchParams);
-        params.delete("category");
-        params.set("page", "1");
-        setSearchParams(params);
+        params.set("category", category);
       }
+      params.set("page", "1");
+      setSearchParams(params);
     },
-    [setSearchParams, searchParams]
+    [setSearchParams]
   );
 
   const openModal = useCallback((image) => {
@@ -120,7 +116,25 @@ const Gallery = () => {
     setIsModalVisible(false);
     setTimeout(() => setSelectedImage(null), 300);
   }, []);
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
 
+    const modalElement = modalRef.current;
+    if (isModalVisible && modalElement) {
+      modalElement.focus(); // Đảm bảo modal nhận focus
+      modalElement.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      if (modalElement) {
+        modalElement.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+  }, [isModalVisible, closeModal]);
   const handleOverlayClick = useCallback(
     (e) => {
       if (e.target.classList.contains("modal-overlay")) {
@@ -136,44 +150,56 @@ const Gallery = () => {
         <section className="w-full flex flex-col gap-[1.6rem] py-[2rem] gallery">
           {/* Dynamic Filter Buttons */}
           <div className="inline-flex gap-[1.6rem] items-stretch w-full">
-            <button
-              className={`w-full text-sm border border-gray-500 transition duration-200 px-[1rem] py-[0.6rem] rounded-[0.6rem] font-medium hover:border-gray-900 hover:shadow-button ${
-                !selectedCategory ? "bg-gray-900 text-white" : ""
-              }`}
-              onClick={() => handleFilter("")}
-            >
-              {language === "vi" ? "Tất Cả" : "All"}
-            </button>
-            {Object.entries(categoryTitles).map(([category, titles]) => (
-              <button
-                key={category}
-                className={`w-full text-sm border border-gray-500 transition duration-200 px-[1rem] py-[0.6rem] rounded-[0.6rem] font-medium hover:border-gray-900 hover:shadow-button ${
-                  selectedCategory === category ? "bg-gray-900 text-white" : ""
-                }`}
-                onClick={() => handleFilter(category)}
-              >
-                {titles[language]}
-              </button>
-            ))}
+            {isCategoriesLoading ? (
+              <p>Loading categories...</p>
+            ) : (
+              <>
+                <button
+                  className={`w-full text-sm border border-gray-500 transition duration-200 px-[1rem] py-[0.6rem] rounded-[0.6rem] font-medium hover:border-gray-900 hover:shadow-button ${
+                    !selectedCategory ? "bg-gray-900 text-white" : ""
+                  }`}
+                  onClick={() => handleFilter("")}
+                >
+                  {language === "vi" ? "Tất Cả" : "All"}
+                </button>
+                {Object.entries(categoryTitles).map(([category, titles]) => (
+                  <button
+                    key={category}
+                    className={`w-full text-sm border border-gray-500 transition duration-200 px-[1rem] py-[0.6rem] rounded-[0.6rem] font-medium hover:border-gray-900 hover:shadow-button ${
+                      selectedCategory === category
+                        ? "bg-gray-900 text-white"
+                        : ""
+                    }`}
+                    onClick={() => handleFilter(category)}
+                  >
+                    {titles[language]}
+                  </button>
+                ))}
+              </>
+            )}
           </div>
 
           {/* Image Grid */}
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
-          >
-            <Masonry gutter="10px">
-              {images.map((item) => (
-                <img
-                  key={item.id}
-                  src={item.image_url}
-                  alt={item.title}
-                  className="w-full h-auto rounded-[0.6rem] cursor-pointer mb-[2rem]"
-                  onClick={() => openModal(item.image_url)}
-                  loading="lazy"
-                />
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
+          {isImagesLoading ? (
+            <p>Loading images...</p>
+          ) : (
+            <ResponsiveMasonry
+              columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+            >
+              <Masonry gutter="10px">
+                {images.map((item) => (
+                  <img
+                    key={item.id}
+                    src={item.image_url}
+                    alt={item.title}
+                    className="w-full h-auto rounded-[0.6rem] cursor-pointer mb-[2rem]"
+                    onClick={() => openModal(item.image_url)}
+                    loading="lazy"
+                  />
+                ))}
+              </Masonry>
+            </ResponsiveMasonry>
+          )}
           {meta && meta.last_page > 1 && (
             <Pagination
               currentPage={currentPage}
@@ -187,7 +213,7 @@ const Gallery = () => {
           {selectedImage && (
             <div
               ref={modalRef}
-              tabIndex={-1} // Đảm bảo nhận focus
+              tabIndex={-1}
               className={`fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 transition-opacity duration-300 modal-overlay ${
                 isModalVisible ? "opacity-100" : "opacity-0"
               }`}
@@ -211,4 +237,5 @@ const Gallery = () => {
     </div>
   );
 };
+
 export default Gallery;

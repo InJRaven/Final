@@ -10,10 +10,12 @@ import Card from "../../ui/Card/Card";
 
 import { getRelated, getSlugProduct } from "../../../utils/utils";
 
-import './slug.scss';
+import "./slug.scss";
 import { useDynamicHelmet } from "../../../context/DynamicHelmetContext";
+import { useLoading } from "../../../context/LoadingContext";
 const Slug = () => {
   const { language } = useContext(AppContext);
+  const { startLoading, stopLoading } = useLoading();
   const { slug } = useParams();
   const { setTitle, setMetaTag } = useDynamicHelmet();
   const [product, setProduct] = useState(null);
@@ -22,6 +24,7 @@ const Slug = () => {
   const [selectedPreview, setSelectedPreview] = useState("");
   useEffect(() => {
     const fetchData = async () => {
+      startLoading();
       try {
         const [productResponse, relatedResponse] = await Promise.all([
           getSlugProduct(slug),
@@ -33,8 +36,8 @@ const Slug = () => {
           setTitle(`${productResponse.data.data.name}`);
           setMetaTag({
             ogTitle: `${productResponse.data.data.name}`,
-            ogImage:`${productResponse.data.data.main_image}`
-          })
+            ogImage: `${productResponse.data.data.main_image}`,
+          });
           setSelectedPreview(productResponse.data.data.images[0]?.path || "");
         }
 
@@ -44,13 +47,15 @@ const Slug = () => {
       } catch (error) {
         console.error("Failed to fetch data:", error);
         setTitle("Error Loading Product");
+      } finally {
+        stopLoading();
       }
     };
 
     fetchData();
   }, [slug, language, setTitle, setMetaTag]);
 
-console.log(product)
+  console.log(product);
   const images = useMemo(() => product?.images || [], [product]);
 
   const categoryId = useMemo(() => product?.category?.id || "", [product]);
@@ -66,7 +71,7 @@ console.log(product)
         .filter((item) => item.category_id === categoryId)
         .flatMap((item) => item.products || []); // Ensure item.products is an array
 
-        setNewRelated(filteredRelated); // Update related products state
+      setNewRelated(filteredRelated); // Update related products state
     }
   }, [categoryId, related]);
   const short_description = useMemo(

@@ -1,16 +1,18 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { AppContext } from "../../../context/AppContext";
+import { useLoading } from "../../../context/LoadingContext";
 import { getProducts } from "../../../utils/utils";
 import "./products.scss";
 import Card from "../../ui/Card/Card";
 import Pagination from "../../ui/Pagination/Pagination";
 const Products = () => {
   const { language } = useContext(AppContext);
+  const { startLoading, stopLoading } = useLoading();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [products, setProducts] = useState([]);
   const [meta, setMeta] = useState({});
-
-  const [searchParams, setSearchParams] = useSearchParams();
   const [priceFilter, setPriceFilter] = useState("asc");
 
   const categoryId = searchParams.get("category_id");
@@ -19,18 +21,23 @@ const Products = () => {
   useEffect(() => {
     fetchProductsData();
   }, [language, categoryId, currentPage]);
+
   const fetchProductsData = async () => {
+    startLoading(); // Bắt đầu loading
     try {
       const response = await getProducts({
         ...(categoryId ? { category_id: categoryId } : {}),
         page: currentPage,
       });
+
       if (response.status === 200) {
         setProducts(response.data.data);
         setMeta(response.data.meta);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Failed to fetch products: ", error);
+    } finally {
+      stopLoading(); // Kết thúc loading, bất kể có lỗi hay không
     }
   };
   const sortedProducts = useMemo(() => {
