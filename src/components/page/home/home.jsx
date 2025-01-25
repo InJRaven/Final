@@ -2,12 +2,11 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 import { SettingContext } from "../../../context/SettingContext";
 import { getMenu, getRelated } from "../../../utils/utils";
-
 import SideBar from "../../../views/partials/sidebar/sidebar";
 import Advertisements from "./advertisements/Advertisements";
 import Section from "./section/Section";
 import Banner from "./banner/Banner";
-import { cache } from "react";
+
 const Home = () => {
   const { settings } = useContext(SettingContext);
   const { language } = useContext(AppContext);
