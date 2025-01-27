@@ -48,7 +48,7 @@ const Header = () => {
     <header className="w-full bg-dark shadow-header flex flex-col items-center header">
       <div className="w-full bg-dark flex items-center justify-center py-[0.8rem] border-b-[1px] border-gray-400 header__introduce">
         <span className="uppercase text-white font-medium text-xs">
-          DARIUSPHAN CUSTOM CUES AND REPAIR SERVICE
+          DARIUS PHAN CUSTOM CUES AND REPAIR SERVICE
         </span>
       </div>
       <div className="w-full grid grid-cols-6 gap-[4rem] xs:gap-[1rem] py-[1.6rem] px-[3.2rem]">
