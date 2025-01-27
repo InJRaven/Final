@@ -120,9 +120,9 @@ const Slug = () => {
       </section>
       <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem]">
         <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
-          <section className="grid grid-cols-[_0.8fr_0.5fr] gap-[3rem] product">
+          <section className="grid grid-cols-[_0.9fr_0.5fr] gap-[3rem] product">
             <div className="col-span-1 row-span-1 grid gap-[1rem] relative product__preview">
-              <div className="w-full aspect-square bg-gray-500 product__img">
+              <div className="w-full aspect-square p-[0.5rem] bg-white shadow-card rounded-[0.6rem] border-[2px] border-gray-300 product__img">
                 <img
                   src={selectedPreview}
                   alt="Selected preview"
@@ -152,9 +152,9 @@ const Slug = () => {
                 {images.map((item, index) => (
                   <SwiperSlide key={item.path}>
                     <div
-                      className={`w-full aspect-square bg-gray-500 transition duration-200 border-[3px] ${
+                      className={`w-full h-full bg-gray-500 transition duration-200 border-[3px] ${
                         selectedPreview === item.path
-                          ? "border-red-400"
+                          ? "border-gray-900"
                           : "border-transparent"
                       } group__img--item`}
                       onClick={() => handlePreviewClick(item.path)}
@@ -179,7 +179,7 @@ const Slug = () => {
               </h4>
               <div
                 dangerouslySetInnerHTML={{ __html: short_description }}
-                className="!text-md !font-medium break-words"
+                className="!text-md !font-medium break-words mt-[2rem]"
               />
             </div>
           </section>

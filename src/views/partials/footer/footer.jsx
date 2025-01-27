@@ -13,19 +13,19 @@ const Footer = () => {
     {
       name: "Darius Phan Cues and Repair Service",
       address:
-        "Số 27, Đường Nguyễn Huy Tự, Phường Hưng Trí, Thị Xã Kỳ Anh, Hà Tĩnh",
+        "Số Nhà 27, đường Nguyễn Huy Tự, phường Hưng Trí, thị xã Kỳ Anh, Hà Tĩnh",
       phoneNumber: "+84 389 9999",
-      email: "Dariusphancues89@gmail.com",
+      email: "dariusphancues89@gmail.com",
       working: "8:00h - 18:00h (T2 - CN)",
       website: "Dariusphan.com",
     },
     {
       name: "Darius Phan Cues and Repair Service",
       address:
-        "No. 27 Nguyen Huy Tu Street, Hung Tri Ward, Ky Anh Town, Ha Tinh Province, Vietnam",
+        "No. 27 Nguyen Huy Tu street, Hung Tri ward, Ky Anh town, Ha Tinh province, Vietnam",
       phoneNumber: "+84 389 9999",
-      email: "Dariusphancues89@gmail.com",
-      working: "8:00 AM - 6:00 PM (Mon - Sun)",
+      email: "dariusphancues89@gmail.com",
+      working: "8:00am - 6:00pm (Mon - Sun)",
       website: "Dariusphan.com",
     },
   ];
@@ -74,7 +74,7 @@ const Footer = () => {
             </p>
             <p className="text-gray-500 text-md break-words">
               <span className="text-light font-bold">
-                {language === "vi" ? "Điện thoại:" : "Phone Number:"}
+                {language === "vi" ? "Điện thoại:" : "Tel:"}
               </span>{" "}
               {selectedCompany.phoneNumber}
             </p>
@@ -84,7 +84,7 @@ const Footer = () => {
             </p>
             <p className="text-gray-500 text-md break-words">
               <span className="text-light font-bold">
-                {language === "vi" ? "Thời gian làm việc:" : "Working:"}
+                {language === "vi" ? "Thời gian làm việc:" : "Working time:"}
               </span>{" "}
               {selectedCompany.working}
             </p>

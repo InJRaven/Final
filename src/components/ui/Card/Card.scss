@@ -1,3 +1,4 @@
 .card {
-  @apply h-full flex flex-col items-center justify-start bg-light rounded-[0.6rem] shadow-card cursor-pointer transition-all duration-300 relative;
+  transform-origin: center;
+  @apply h-full grid grid-rows-[auto_auto_auto] items-center justify-start bg-light rounded-[0.6rem] shadow-card cursor-pointer transition-transform duration-300 transform relative;
 }

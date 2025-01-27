@@ -5,7 +5,7 @@ import { getMenu, getRelated } from "../../../utils/utils";
 import SideBar from "../../../views/partials/sidebar/sidebar";
 import Advertisements from "./advertisements/Advertisements";
 import Section from "./section/section";
-import Banner from "./banner/Banner";
+import Banner from "./banner/banner";
 import { useLoading } from "../../../context/LoadingContext";
 
 const Home = () => {
@@ -62,7 +62,6 @@ const Home = () => {
     `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}`,
   ];
 
-  console.log(menu);
   return (
     <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3rem] xs:px-[1rem] py-[2rem]">
       {menu && <SideBar menu={menu} />}

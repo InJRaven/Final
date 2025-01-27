@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../../../context/AppContext";
 import { useLoading } from "../../../context/LoadingContext";
 
-import { PiUserCircleFill , PiPhoneDisconnect } from "react-icons/pi";
+import { PiUserCircleFill, PiPhoneDisconnect } from "react-icons/pi";
 import { HiOutlineMail } from "react-icons/hi";
 import { SlLocationPin } from "react-icons/sl";
 const Contact = () => {
@@ -38,9 +38,11 @@ const Contact = () => {
 
             <div className="flex flex-col gap-[1rem] justify-center">
               <div className="flex flex-row gap-[2rem] items-center">
-                <PiUserCircleFill  className="text-xl " />
+                <PiUserCircleFill className="text-xl " />
                 <span className="text-xl text-center font-bold text-gray-900">
-                  Phan Công An
+                  {language === "vi"
+                    ? "Phan Công An"
+                    : "Phan Cong An"}
                 </span>
               </div>
 
@@ -54,7 +56,7 @@ const Contact = () => {
               <div className="flex flex-row gap-[2rem] items-center">
                 <HiOutlineMail className="text-xl text-red-700" />
                 <span className="text-xl font-semibold text-gray-900">
-                  Dariusphancues89@gmail.com
+                  dariusphancues89@gmail.com
                 </span>
               </div>
 
@@ -62,8 +64,8 @@ const Contact = () => {
                 <SlLocationPin className="text-xl text-blue-700" />
                 <span className="text-lg font-semibold text-gray-900 w-[40rem]">
                   {language === "vi"
-                    ? "Số 27, Đường Nguyễn Huy Tự, Phường Hưng Trí, Thị Xã Kỳ Anh, Hà Tĩnh"
-                    : "No. 27 Nguyen Huy Tu Street, Hung Tri Ward, Ky Anh Town, Ha Tinh Province, Vietnam"}
+                    ? "Số 27 Nhà, đường Nguyễn Huy Tự, phường Hưng Trí, thị xã Kỳ Anh, Hà Tĩnh"
+                    : "No. 27 Nguyen Huy Tu street, Hung Tri ward, Ky Anh town, Ha Tinh province, Vietnam"}
                 </span>
               </div>
             </div>

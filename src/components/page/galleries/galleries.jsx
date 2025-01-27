@@ -227,7 +227,7 @@ const Gallery = () => {
                 <img
                   src={selectedImage}
                   alt="Selected"
-                  className="max-w-full max-h-screen rounded-[0.6rem]"
+                  className="max-w-full max-h-screen p-[0.5rem] bg-white border rounded-[0.6rem] object-cover"
                 />
               </div>
             </div>
