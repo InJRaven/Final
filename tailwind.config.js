@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        roboto:["Roboto", "serif"],
+        inter: ["Inter", "sans-serif"],
         apple: ["SF Pro", "sans-serif"],
         "ki-duotone": "ki-duotone",
         "ki-filled": "ki-filled",

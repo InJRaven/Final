@@ -1,7 +1,5 @@
 import { ImSpinner10 } from "react-icons/im";
 import { useLoading } from "../../../context/LoadingContext";
-import { motion, AnimatePresence } from "framer-motion";
-
 const LoadingPage = () => {
   const { isLoading } = useLoading();
 

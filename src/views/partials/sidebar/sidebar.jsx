@@ -9,7 +9,7 @@ const SideBar = ({ menu }) => {
   };
 
   return (
-    <aside className="w-full h-fit col-start-1 col-span-1 bg-light border border-light-active flex flex-col gap-[0.5rem] items-stretch rounded-[0.6rem] sidebar">
+    <aside className="w-full h-fit col-start-1 col-end-2 bg-light border border-light-active flex flex-col gap-[0.5rem] items-stretch rounded-[0.6rem] sidebar">
       {menu.map((item, index) => (
         <div
           key={item.id}
@@ -18,7 +18,7 @@ const SideBar = ({ menu }) => {
           onMouseLeave={() => setOpenDropdown(null)} // Đóng dropdown khi rời chuột khỏi element
         >
           {item.children && item.children.length > 0 ? (
-            <div className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 cursor-pointer">
+            <div className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-medium transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 cursor-pointer">
               <span>
                 {item.translations.find((t) => t.locale === "vi")?.name}
               </span>
@@ -32,7 +32,7 @@ const SideBar = ({ menu }) => {
             <NavLink
               to={`/menus/${item.id}/post`}
               target="_blank"
-              className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2"
+              className="inline-flex w-full items-center justify-between text-md xs:text-xs text-gray-600 font-medium transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2"
             >
               <span>
                 {item.translations.find((t) => t.locale === "vi")?.name}

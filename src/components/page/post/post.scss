@@ -1,3 +1,9 @@
 .heading{
     display: none !important;
 }
+
+figure.image{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}

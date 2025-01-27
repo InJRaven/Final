@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Advertisements = ({ advertisements }) => {
 
   return (
-    <div className="col-start-6 col-span-6 w-full h-full">
+    <div className="col-start-6 col-end-7 w-full h-full">
       <Link to={'#'}>
         <img
           src={advertisements && advertisements[0]?.image_path}

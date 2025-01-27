@@ -4,7 +4,7 @@ import { SettingContext } from "../../../context/SettingContext";
 import { getMenu, getRelated } from "../../../utils/utils";
 import SideBar from "../../../views/partials/sidebar/sidebar";
 import Advertisements from "./advertisements/Advertisements";
-import Section from "./section/Section";
+import Section from "./section/section";
 import Banner from "./banner/Banner";
 import { useLoading } from "../../../context/LoadingContext";
 
@@ -64,12 +64,11 @@ const Home = () => {
 
   console.log(menu);
   return (
-    <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem]">
+    <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3rem] xs:px-[1rem] py-[2rem]">
       {menu && <SideBar menu={menu} />}
-      <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
+      <div className="w-full col-start-2 col-end-6 flex flex-col gap-[2rem]">
         {banners && <Banner banners={banners} />}
-        <div className="w-full flex flex-col items-center container">
-          {related &&
+        {related &&
             related.map((item, index) => {
               return (
                 <Section
@@ -84,7 +83,6 @@ const Home = () => {
                 />
               );
             })}
-        </div>
       </div>
 
       {advertisements && <Advertisements advertisements={advertisements} />}
