@@ -1,6 +1,7 @@
 .header {
   @apply row-start-1 col-start-1;
   &__menu {
+    
     &--link {
       @apply relative text-light-active;
       &::before {
@@ -17,6 +18,12 @@
           @apply absolute bottom-0 left-1/2 w-1/2 h-[2px] transform -translate-x-1/2 bg-light;
           content: "";
         }
+      }
+    }
+
+    .header__submenu--item:last-child{
+      a{
+        @apply rounded-b-[0.6rem];
       }
     }
   }

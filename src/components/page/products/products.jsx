@@ -79,11 +79,34 @@ const Products = () => {
   };
   console.log(meta);
 
+  // const title = [
+  //   `${language === "vi" ? "Cơ Nhảy" : "Jump Cue"}`,
+  //   `${language === "vi" ? "Cơ Phá" : "Break Cue"}`,
+  //   `${language === "vi" ? "Cơ Đánh" : "Billard Cue"}`,
+  //   `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}`,
+  // ];
+
   const title = [
-    `${language === "vi" ? "Cơ Nhảy" : "Jump Cue"}`,
-    `${language === "vi" ? "Cơ Phá" : "Break Cue"}`,
-    `${language === "vi" ? "Cơ Đánh" : "Billard Cue"}`,
-    `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}`,
+    { 
+      id: 8, 
+      name: `${language === "vi" ? "Cơ Đánh" : "Billard Cue"}` 
+    },
+    { 
+      id: 7, 
+      name: `${language === "vi" ? "Cơ Nhảy" : "Jump Cue"}` 
+    },
+    { 
+      id: 6, 
+      name: `${language === "vi" ? "Cơ Phá" : "Break Cue"}` 
+    },
+    { 
+      id: 10, 
+      name: `${language === "vi" ? "Ngọn Carbon Fiber" : "Billiard Accessories"}` 
+    },
+    { 
+      id: 9, 
+      name: `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}` 
+    }
   ];
   return (
     <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem]">
@@ -105,9 +128,9 @@ const Products = () => {
                 className="text-sm font-semibold border border-gray-500 rounded-[0.6rem] p-[0.6rem] outline-none hover:cursor-pointer hover:border-gray-900 focus:border-gray-900"
               >
                 <option value="">{language === "vi" ? "Tất Cả" : "All"}</option>
-                {title.map((item, index) => (
-                  <option key={index} value={index + 6}>
-                    {item}
+                {title.map((item) => (
+                  <option key={item.name} value={item.id}>
+                    {item.name}
                   </option>
                 ))}
               </select>
@@ -142,7 +165,7 @@ const Products = () => {
                     url={item.main_image}
                     alt={item.name}
                     nameCard={item.name}
-                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}`}
+                    price={`${language === "vi" ? "Từ" : "From"} ${item.price} ${language === "vi" ? "đ" : "VND"}`}
                     onClick={() => handleProductClick(item.name)}
                   />
                 </Link>

@@ -24,9 +24,10 @@ const Gallery = () => {
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   const categoryTitles = {
-    "co-pha": { vi: "Cơ Phá", en: "Break Cue" },
-    "co-nhay": { vi: "Cơ Nhảy", en: "Jump Cue" },
     "co-danh": { vi: "Cơ Đánh", en: "Billard Cue" },
+    "co-nhay": { vi: "Cơ Nhảy", en: "Jump Cue" },
+    "co-pha": { vi: "Cơ Phá", en: "Break Cue" },
+    "ngon-carbon-fiber": { vi: "Ngọn Carbon Fiber", en: "Carbon Fiber Shaft" },
     "phu-kien": { vi: "Phụ Kiện", en: "Billiard Accessories" },
   };
 
@@ -73,6 +74,7 @@ const Gallery = () => {
     );
   }, [fetchDataWithLoading, selectedCategory, currentPage]);
 
+  console.log(categories)
   const fetchCategoriesData = useCallback(() => {
     fetchDataWithLoading(
       getCategoriesGallery,

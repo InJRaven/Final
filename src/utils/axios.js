@@ -11,7 +11,7 @@ const instance = axios.create({
 
 
 instance.interceptors.request.use((config) => {
-  const language = localStorage.getItem("language") || "vi";
+  const language = sessionStorage.getItem("language") || "vi";
   config.headers["Accept-Language"] = language;
   return config;
 });

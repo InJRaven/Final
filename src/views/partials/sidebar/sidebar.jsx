@@ -9,7 +9,7 @@ const SideBar = ({ menu }) => {
   };
 
   return (
-    <aside className="w-full h-fit col-start-1 col-end-2 bg-light border border-light-active flex flex-col gap-[0.5rem] items-stretch rounded-[0.6rem] sidebar">
+    <aside className="w-full h-fit bg-light border border-light-active flex flex-col gap-[0.5rem] items-stretch rounded-[0.6rem] sidebar">
       {menu.map((item, index) => (
         <div
           key={item.id}

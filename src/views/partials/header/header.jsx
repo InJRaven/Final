@@ -16,20 +16,24 @@ const Header = () => {
       to: "/products",
       children: [
         {
-          to: "/products?category_id=6",
-          label: `${language === "vi" ? "Cơ Nhảy" : "Jump Cue"}`,
-        },
-        {
-          to: "/products?category_id=7",
-          label: `${language === "vi" ? "Cơ Phá" : "Break Cue"}`,
-        },
-        {
           to: "/products?category_id=8",
           label: `${language === "vi" ? "Cơ Đánh" : "Billard Cue"}`,
         },
         {
+          to: "/products?category_id=7",
+          label: `${language === "vi" ? "Cơ Nhảy" : "Jump Cue"}`,
+        },
+        {
+          to: "/products?category_id=6",
+          label: `${language === "vi" ? "Cơ Phá" : "Break Cue"}`,
+        },
+        {
+          to: "/products?category_id=10",
+          label: `${language === "vi" ? "Ngọn Carbon Fiber" : "Carbon Fiber Shaft"}`,
+        },
+        {
           to: "/products?category_id=9",
-          label: `${language === "vi" ? "Phụ Kiện" : " Billiard Accessories"}`,
+          label: `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}`,
         },
       ],
       label: `${language === "vi" ? "Sản Phẩm" : "Products"}`,
@@ -73,7 +77,7 @@ const Header = () => {
                   {item.label}
                 </NavLink>
                 {item.children && openDropdown === index && (
-                  <ul className="absolute top-[3rem] left-[-50%] bg-white shadow-lg rounded-md z-10 flex flex-col">
+                  <ul className="absolute top-[3rem] left-[-50%] bg-white shadow-lg rounded-[0.6rem] z-10 flex flex-col">
                     {item.children.map((child, childIndex) => (
                       <li key={childIndex} className="header__submenu--item">
                         <NavLink
@@ -93,7 +97,7 @@ const Header = () => {
             className="inline-flex items-center w-fit transition duration-200 px-[1rem] py-[0.8rem] border-b border-dark rounded-[0.6rem] text-xs text-light-active font-medium hover:text-light hover:border-light"
             onClick={toggleLanguage}
           >
-            {language === "vi" ? (
+            {language === "en" ? (
               <span className="inline-flex gap-[0.5rem] items-center">
                 <VN
                   title="Vietnamese"

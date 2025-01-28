@@ -14,7 +14,7 @@ const Footer = () => {
       name: "Darius Phan Cues and Repair Service",
       address:
         "Số Nhà 27, đường Nguyễn Huy Tự, phường Hưng Trí, thị xã Kỳ Anh, Hà Tĩnh",
-      phoneNumber: "+84 389 9999",
+      phoneNumber: "0843.89.9999",
       email: "dariusphancues89@gmail.com",
       working: "8:00h - 18:00h (T2 - CN)",
       website: "Dariusphan.com",
@@ -22,8 +22,8 @@ const Footer = () => {
     {
       name: "Darius Phan Cues and Repair Service",
       address:
-        "No. 27 Nguyen Huy Tu street, Hung Tri ward, Ky Anh town, Ha Tinh province, Vietnam",
-      phoneNumber: "+84 389 9999",
+        "No. 27 Nguyen Huy Tu street, Hung Tri ward, Ky Anh city, Ha Tinh province, Vietnam",
+      phoneNumber: "+84 843899999",
       email: "dariusphancues89@gmail.com",
       working: "8:00am - 6:00pm (Mon - Sun)",
       website: "Dariusphan.com",
@@ -135,7 +135,7 @@ const Footer = () => {
           </div>
         </div> */}
 
-        <div className="md:hidden col-start-2 col-end-5 row-start-1 row-end-2 footer__container--item max-h-[30rem]">
+        <div className="col-start-2 col-end-5 row-start-1 row-end-2 footer__container--item max-h-[30rem]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.169746533603!2d106.29606059999999!3d18.063694899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313889413939fe4d%3A0x6702b91b94dc7df1!2sDariusPhan%20Cues%20%26%20Repair%20Service!5e0!3m2!1svi!2s!4v1737713879546!5m2!1svi!2s"
             width={600}

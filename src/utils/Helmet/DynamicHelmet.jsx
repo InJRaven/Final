@@ -18,7 +18,7 @@ const DynamicHelmet = () => {
       <meta property="og:url" content={metaTag.ogUrl || fullUrl} />
       <meta name="description" content={metaTag.description || title} />
       <meta property="og:image" content={metaTag.ogImage || "default.jpg"} />
-      <link rel="icon" href={favicon}  type="image/webp"></link>
+      <link rel="icon" href={favicon}  type="image/x-icon"></link>
       
     </Helmet>
   );

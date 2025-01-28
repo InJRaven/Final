@@ -49,7 +49,9 @@ const Contact = () => {
               <div className="flex flex-row gap-[2rem] items-center">
                 <PiPhoneDisconnect className="text-xl text-green-700" />
                 <span className="text-lg font-semibold text-gray-900">
-                  +84 389 9999
+                {language === "vi"
+                    ? " 0843.89.9999"
+                    : " +84 843899999"}
                 </span>
               </div>
 

@@ -54,8 +54,6 @@ const Slug = () => {
 
     fetchData();
   }, [slug, language, setTitle, setMetaTag]);
-
-  console.log(product);
   const images = useMemo(() => product?.images || [], [product]);
 
   const categoryId = useMemo(() => product?.category?.id || "", [product]);
@@ -120,7 +118,7 @@ const Slug = () => {
       </section>
       <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem]">
         <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
-          <section className="grid grid-cols-[_0.9fr_0.5fr] gap-[3rem] product">
+          <section className="grid grid-cols-[_0.6fr_0.5fr] gap-[3rem] product">
             <div className="col-span-1 row-span-1 grid gap-[1rem] relative product__preview">
               <div className="w-full aspect-square p-[0.5rem] bg-white shadow-card rounded-[0.6rem] border-[2px] border-gray-300 product__img">
                 <img
@@ -170,17 +168,19 @@ const Slug = () => {
               </Swiper>
             </div>
 
-            <div className="col-span-2 col-start-2 flex flex-col gap-[1rem] product__information">
+            <div className="col-span-2 col-start-2 flex flex-col gap-[1.2rem] p-[0.5rem] rounded-[0.6rem] product__information">
               <h2 className="gap-[1rem] font-bold text-display-sm break-words">
                 {product?.name}
               </h2>
-              <h4 className="text-xl text-red-500 font-bold mb-[1rem]">
-                {language === "vi" ? "Từ" : "From"} {product?.price}
+              <h4 className="text-xl text-red-600 font-bold mb-[0.5rem]">
+                {language === "vi" ? "Từ" : "From"} {product?.price}{language === "vi" ? "₫" : "VND"}
               </h4>
+              <span className="w-full h-[1px] bg-gray-900"></span>
               <div
                 dangerouslySetInnerHTML={{ __html: short_description }}
-                className="!text-md !font-medium break-words mt-[2rem]"
+                className="!text-md break-words mt-[0.5rem]"
               />
+              
             </div>
           </section>
           <section className="w-full flex flex-col gap-[2rem] items-stretch detail__description">
@@ -200,14 +200,14 @@ const Slug = () => {
             <h2 className="uppercase text-display-sm font-bold">
               {language === "vi" ? "Sản Phẩm Liên Quan" : "Related Products"}
             </h2>
-            <div className="grid grid-cols-4 gap-[2rem] more-product">
+            <div className="grid grid-cols-4 md:grid-cols-2 gap-[2rem] more-product">
               {newRelated.map((item) => (
                 <Link to={`/products/${item.slug}`} key={item.slug}>
                   <Card
                     url={item.main_image}
                     alt={item.name}
                     nameCard={item.name}
-                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}`}
+                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}${language === "vi" ? "₫" : "VND"}`}
                   />
                 </Link>
               ))}
