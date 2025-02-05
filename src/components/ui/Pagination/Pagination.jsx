@@ -51,11 +51,7 @@ const Pagination = ({
   const paginationItems = getPaginationItems();
 
   return (
-    <div className="flex items-center justify-between border-t border-gray-400 bg-white px-4 py-3 ">
-      {/* Điều hướng trên thiết bị nhỏ */}
-      
-
-      {/* Điều hướng trên thiết bị lớn */}
+    <div className="flex items-center justify-between border-t border-gray-400 bg-white px-4 py-3">
       <div className="sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">

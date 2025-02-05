@@ -8,6 +8,7 @@ import SideBar from "../../../views/partials/sidebar/sidebar";
 import "./post.scss";
 import { useLoading } from "../../../context/LoadingContext";
 import { getMenu, getPost } from "../../../utils/utils";
+import { ImSpinner10 } from "react-icons/im";
 
 const Post = () => {
   const [menu, setMenu] = useState([]);
@@ -32,11 +33,12 @@ const Post = () => {
 
         if (postResponse.status === 200) {
           const fetchedPost = postResponse.data.data.posts;
+          console.log(postResponse.data.data);
+
           setPost(fetchedPost);
 
           const postTitle = fetchedPost[0]?.title || "Loading Post";
-          const postThumbnail =
-            fetchedPost[0]?.thumbnail || "Loading";
+          const postThumbnail = fetchedPost[0]?.thumbnail || "Loading";
 
           setTitle(postTitle);
           setMetaTag({
@@ -53,6 +55,7 @@ const Post = () => {
 
     fetchData();
   }, [language, id]);
+
   const sanitizedHtml =
     post && post.length > 0 && post[0]?.content
       ? DOMPurify.sanitize(post[0]?.content)
@@ -68,9 +71,10 @@ const Post = () => {
             className="p-[1.6rem] !text-md !font-medium break-words"
           />
         ) : (
-          <p>
-            {language === "vi" ? "Đang tải bài viết..." : "Loading post..."}
-          </p>
+          <div className="flex flex-col items-center justify-center h-full">
+            <ImSpinner10 className="w-16 h-16 text-gray-900 animate-spin mb-4" />
+            <p className="text-gray-600 text-lg font-semibold">Loading Post...</p>
+          </div>
         )}
       </div>
     </div>

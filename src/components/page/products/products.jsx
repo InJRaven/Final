@@ -77,15 +77,6 @@ const Products = () => {
       language === "vi" ? "Chi Tiết Sản Phẩm" : "Product Details"
     }`;
   };
-  console.log(meta);
-
-  // const title = [
-  //   `${language === "vi" ? "Cơ Nhảy" : "Jump Cue"}`,
-  //   `${language === "vi" ? "Cơ Phá" : "Break Cue"}`,
-  //   `${language === "vi" ? "Cơ Đánh" : "Billard Cue"}`,
-  //   `${language === "vi" ? "Phụ Kiện" : "Billiard Accessories"}`,
-  // ];
-
   const title = [
     { 
       id: 8, 

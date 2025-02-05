@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./section.scss";
 const Section = React.memo(
   ({
-    langugage,
+    language ,
     title,
     typeButton,
     link,
@@ -26,7 +26,7 @@ const Section = React.memo(
                 url={item.main_image}
                 alt={item.name}
                 nameCard={item.name}
-                price={`${langugage === 'vi' ? 'Từ': 'From'} ${item.price}`}
+                price={`${language  === 'vi' ? 'Từ': 'From'} ${item.price}`}
               />
             </Link>
           ))}

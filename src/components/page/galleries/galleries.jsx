@@ -74,7 +74,6 @@ const Gallery = () => {
     );
   }, [fetchDataWithLoading, selectedCategory, currentPage]);
 
-  console.log(categories)
   const fetchCategoriesData = useCallback(() => {
     fetchDataWithLoading(
       getCategoriesGallery,
@@ -194,7 +193,7 @@ const Gallery = () => {
                     key={item.id}
                     src={item.image_url}
                     alt={item.title}
-                    className="w-full h-auto rounded-[0.6rem] cursor-pointer mb-[2rem]"
+                    className="w-full h-auto rounded-[0.6rem] cursor-pointer "
                     onClick={() => openModal(item.image_url)}
                     loading="lazy"
                   />

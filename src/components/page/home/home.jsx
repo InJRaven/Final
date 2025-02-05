@@ -50,7 +50,6 @@ const Home = () => {
       console.log("Fetch Related Error", error);
     }
   };
-  console.log(related)
   const fetchMenuData = async () => {
     try {
       const response = await getMenu();

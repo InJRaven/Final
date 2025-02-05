@@ -51,7 +51,7 @@ const Header = () => {
   return (
     <header className="w-full bg-dark shadow-header flex flex-col items-center header">
       <div className="w-full bg-dark flex items-center justify-center py-[0.8rem] border-b-[1px] border-gray-400 header__introduce">
-        <span className="uppercase text-white font-medium text-xs">
+        <span className="uppercase text-white  text-sm tracking-[0.5rem]">
           DARIUS PHAN CUSTOM CUES AND REPAIR SERVICE
         </span>
       </div>

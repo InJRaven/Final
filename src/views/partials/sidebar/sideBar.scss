@@ -1,23 +1,6 @@
+.sidebar-item{
 
-.sidebar-link{
-    @apply px-[2rem] xs:px-[0.5rem] py-[1rem];
-    &:first-child{
-      @apply rounded-t-[0.6rem];
-    }
+  &::first-child{
 
-    &:last-child{
-      @apply rounded-b-[0.6rem];
-      // bg-[#f9f9fa]
-    }
-  &.active {
-    @apply text-dark bg-gray-200;
-    svg path {
-      @apply stroke-dark;
-    }
-  }
-  &:hover {
-    svg path {
-      @apply stroke-dark;
-    }
   }
 }
