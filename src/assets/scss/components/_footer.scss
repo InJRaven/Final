@@ -1,7 +1,7 @@
 .footer {
-  @apply row-start-4 col-start-1 bg-dark grid grid-cols-6 xs:px-[4rem] py-[4rem] relative bottom-0 left-0;
+  @apply row-start-4 col-start-1 bg-dark grid grid-cols-6 lg:px-[3.2rem]  xs:p-[2rem] relative bottom-0 left-0;
   &__container {
-    @apply w-full col-start-2 col-span-4 xs:col-start-1 xs:col-span-6 grid  grid-cols-[1.25fr_repeat(2,1fr)] md:grid-cols-2 grid-rows-[auto] gap-[4rem];
+    @apply w-full col-start-2 col-span-4 lg:col-start-1 lg:col-span-6 grid grid-cols-[1.25fr_repeat(2,1fr)] md:grid-cols-2 grid-rows-[auto] gap-[4rem];
     &--item {
       @apply flex flex-col items-stretch gap-[2.4rem];
       .social {

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { US, VN } from "country-flag-icons/react/3x2";
 import { SettingContext } from "../../../context/SettingContext";
@@ -38,6 +38,10 @@ const Header = () => {
       ],
       label: `${language === "vi" ? "Sản Phẩm" : "Products"}`,
     },
+    {
+      to: "/products-available",
+      label: `${language === "vi" ? "Sản Phẩm Có Sẵn" : "Products Available"}`,
+    },
     { to: "/service", label: `${language === "vi" ? "Dịch Vụ" : "Services"}` },
     {
       to: "/gallery",
@@ -55,8 +59,8 @@ const Header = () => {
           DARIUS PHAN CUSTOM CUES AND REPAIR SERVICE
         </span>
       </div>
-      <div className="w-full grid grid-cols-6 gap-[4rem] xs:gap-[1rem] py-[1.6rem] px-[3.2rem]">
-        <div className="w-full col-start-2 col-span-4 xs:col-start-1 xs:col-span-6 inline-flex items-center justify-between header__container">
+      <div className="w-full grid grid-cols-6 gap-[4rem] xs:gap-[1rem] py-[1.6rem] px-[3.2rem] xs:p-[1rem]">
+        <div className="w-full col-start-2 col-span-4 lg:col-start-1 lg:col-span-6 inline-flex items-center justify-between header__container">
           <div className="logo">
             <Link to={"/"} className="text-display-xs text-white">
               <img src={logo && logo} alt="" className="max-w-[4rem]" />

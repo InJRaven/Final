@@ -21,6 +21,8 @@ import Gallery from "../components/page/galleries/galleries";
 import Contact from "../components/page/contact/contact";
 import Post from "../components/page/post/post";
 import LoadingPage from "../components/page/Loading/LoadingPage";
+import ProductAvailable from "../components/page/products/ProductsAvailable";
+import SlugAvailable from "../components/page/slug/SlugAvailable";
 function App() {
   const { language } = useContext(AppContext);
   const { loading } = useContext(SettingContext);
@@ -42,8 +44,22 @@ function App() {
           title: `${language === "vi" ? "Sản Phẩm" : "Products"}`,
         },
         {
+          path: "products-available",
+          name: `${
+            language === "vi" ? "Sản Phẩm Có Sẵn" : "Products Available"
+          }`,
+          title: `${
+            language === "vi" ? "Sản Phẩm Có Sẵn" : "Products Available"
+          }`,
+          element:<ProductAvailable /> ,
+        },
+        {
           path: "products/:slug",
           element: <Slug />,
+        },
+        {
+          path: "products-available/:slug",
+          element: <SlugAvailable />,
         },
         {
           path: "service",

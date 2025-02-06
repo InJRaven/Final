@@ -63,14 +63,14 @@ module.exports = {
       screens: {
         xl: { max: "1200px" }, // => @media (max-width: 1200px) { ... }
         lg: { max: "1000px" },
-        xl: { max: "800px" },
-        md: { max: "640px" },
+        md: { max: "800px" },
+        sm: { max: "640px" },
         xs: { max: "450px" },
       },
     },
   },
   plugins: [
-    function ({ addBase, theme }) {
+    function ({ addBase }) {
       // Lấy các giá trị font-size từ theme hoặc tự thiết lập giá trị font-size cho các breakpoint
       addBase({
         html: {

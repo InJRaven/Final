@@ -13,7 +13,7 @@ import { getRelated, getSlugProduct } from "../../../utils/utils";
 import "./slug.scss";
 import { useDynamicHelmet } from "../../../context/DynamicHelmetContext";
 import { useLoading } from "../../../context/LoadingContext";
-const Slug = () => {
+const SlugAvailable = () => {
   const { language } = useContext(AppContext);
   const { startLoading, stopLoading } = useLoading();
   const { slug } = useParams();
@@ -102,7 +102,7 @@ const Slug = () => {
                 <i className="ki-duotone ki-right" />
               </span>
               <Link to="/products" className="!text-md breadcrumb__menu--link">
-                {language === "vi" ? "Sản Phẩm" : "Products"}
+                {language === "vi" ? "Sản Phẩm Có Sẵn" : "Products Available"}
               </Link>
             </li>
             <li className="gap-[0.6rem] breadcrumb__menu--item">
@@ -219,4 +219,4 @@ const Slug = () => {
   );
 };
 
-export default Slug;
+export default SlugAvailable;

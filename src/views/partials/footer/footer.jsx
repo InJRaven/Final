@@ -23,35 +23,13 @@ const Footer = () => {
       website: "Dariusphan.com",
     },
   ];
-  const introduction = [
-    {
-      title: "Giới Thiệu",
-      founder: "Sáng Lập",
-      workshop: "Xưởng Sản Xuất",
-      personal: " Nhân Sự Công Ty",
-      recruitment: "Tuyển Dụng Nhân Sự",
-      process: "Quy Trình Làm Việc",
-      channel: "Kênh Youtube",
-    },
-    {
-      title: "Introduction",
-      founder: "Founder",
-      workshop: "Production Workshop",
-      personal: "Company Personnel",
-      recruitment: "Recruitment",
-      process: "Working Process",
-      channel: "YouTube Channel",
-    },
-  ];
-  const [isLoading, setIsLoading] = useState(true);
+  const [setIsLoading] = useState(true);
 
   useEffect(() => {
     const timeout = setTimeout(() => setIsLoading(false), 1000); // Simulate loading time
     return () => clearTimeout(timeout);
   }, []);
   const selectedCompany = language === "vi" ? company[0] : company[1];
-  const selectedIntroduction =
-    language === "vi" ? introduction[0] : introduction[1];
   return (
     <footer className="footer">
       <div className="footer__container">
