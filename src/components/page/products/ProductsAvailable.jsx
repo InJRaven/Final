@@ -35,7 +35,7 @@ const Products = () => {
     } finally {
       stopLoading(); // End loading, regardless of success or failure
     }
-  }, [categoryId, currentPage]); 
+  }, [language,categoryId, currentPage]); 
   
   useEffect(() => {
     fetchProductsData();
