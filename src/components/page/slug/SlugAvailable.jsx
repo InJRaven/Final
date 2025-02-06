@@ -101,8 +101,11 @@ const SlugAvailable = () => {
               <span className="flex items-center justify-center text-xs font-bold text-gray-700 icon">
                 <i className="ki-duotone ki-right" />
               </span>
-              <Link to="/products" className="!text-md breadcrumb__menu--link">
-                {language === "vi" ? "Sản Phẩm Có Sẵn" : "Products Available"}
+              <Link
+                to="/products-available"
+                className="!text-md breadcrumb__menu--link"
+              >
+                {language === "vi" ? "Hàng sẵn bán" : "Available For Sale"}
               </Link>
             </li>
             <li className="gap-[0.6rem] breadcrumb__menu--item">
@@ -173,14 +176,14 @@ const SlugAvailable = () => {
                 {product?.name}
               </h2>
               <h4 className="text-xl text-red-600 font-bold mb-[0.5rem]">
-                {language === "vi" ? "Từ" : "From"} {product?.price}{language === "vi" ? "₫" : "VND"}
+                {language === "vi" ? "Từ" : "From"} {product?.price}
+                {language === "vi" ? "₫" : "VND"}
               </h4>
               <span className="w-full h-[1px] bg-gray-900"></span>
               <div
                 dangerouslySetInnerHTML={{ __html: short_description }}
                 className="!text-md break-words mt-[0.5rem]"
               />
-              
             </div>
           </section>
           <section className="w-full flex flex-col gap-[2rem] items-stretch detail__description">
@@ -207,7 +210,9 @@ const SlugAvailable = () => {
                     url={item.main_image}
                     alt={item.name}
                     nameCard={item.name}
-                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}${language === "vi" ? "₫" : "VND"}`}
+                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}${
+                      language === "vi" ? "₫" : "VND"
+                    }`}
                   />
                 </Link>
               ))}

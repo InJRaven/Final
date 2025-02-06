@@ -38,11 +38,11 @@ const Header = () => {
       ],
       label: `${language === "vi" ? "Sản Phẩm" : "Products"}`,
     },
+    { to: "/service", label: `${language === "vi" ? "Dịch Vụ" : "Services"}` },
     {
       to: "/products-available",
-      label: `${language === "vi" ? "Sản Phẩm Có Sẵn" : "Products Available"}`,
+      label: `${language === "vi" ? "Hàng sẵn bán" : "Available For Sale"}`,
     },
-    { to: "/service", label: `${language === "vi" ? "Dịch Vụ" : "Services"}` },
     {
       to: "/gallery",
       label: `${language === "vi" ? "Thư Viện Ảnh" : "Gallery"}`,
