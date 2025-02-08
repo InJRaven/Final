@@ -20,8 +20,8 @@ const Contact = () => {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="w-full flex flex-col gap-[2rem]">
-      <div className="w-full rounded-[0.6rem] h-[70vh] bg-gray-100 flex flex-col items-center justify-center gap-[2.4rem]">
+    <div className="col-start-1 col-end-7 w-full flex flex-col gap-[2rem] padding-page">
+      <div className="w-full rounded-[0.6rem] h-[70vh] flex flex-col items-center justify-center gap-[2.4rem]">
         <div className="flex items-center justify-center gap-[1.8rem]">
           <div className="flex flex-row gap-[2rem] w-full">
             <div className="w-[49.5rem] h-[49.5rem] rounded-[50%]">

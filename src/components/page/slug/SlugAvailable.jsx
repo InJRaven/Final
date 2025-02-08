@@ -85,7 +85,7 @@ const SlugAvailable = () => {
     setSelectedPreview(path);
   };
   return (
-    <>
+    <div className="col-start-1 col-end-7 w-full flex flex-col gap-[2rem]">
       <section className="rol-start-2 grid grid-cols-6 gap-[4rem] py-[2rem] bg-gray-200">
         <nav
           className="col-start-2 col-span-4 px-[2rem] gap breadcrumb"
@@ -220,7 +220,7 @@ const SlugAvailable = () => {
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

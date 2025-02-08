@@ -85,7 +85,7 @@ const Slug = () => {
     setSelectedPreview(path);
   };
   return (
-    <>
+    <div className="col-start-1 col-end-7 w-full flex flex-col gap-[2rem]">
       <section className="rol-start-2 grid grid-cols-6 gap-[4rem] py-[2rem] bg-gray-200">
         <nav
           className="col-start-2 col-span-4 px-[2rem] gap breadcrumb"
@@ -173,14 +173,14 @@ const Slug = () => {
                 {product?.name}
               </h2>
               <h4 className="text-xl text-red-600 font-bold mb-[0.5rem]">
-                {language === "vi" ? "Từ" : "From"} {product?.price}{language === "vi" ? "₫" : "VND"}
+                {language === "vi" ? "Từ" : "From"} {product?.price}
+                {language === "vi" ? "₫" : "VND"}
               </h4>
               <span className="w-full h-[1px] bg-gray-900"></span>
               <div
                 dangerouslySetInnerHTML={{ __html: short_description }}
                 className="!text-md break-words mt-[0.5rem]"
               />
-              
             </div>
           </section>
           <section className="w-full flex flex-col gap-[2rem] items-stretch detail__description">
@@ -207,7 +207,9 @@ const Slug = () => {
                     url={item.main_image}
                     alt={item.name}
                     nameCard={item.name}
-                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}${language === "vi" ? "₫" : "VND"}`}
+                    price={`${language === "vi" ? "Từ" : "From"} ${item.price}${
+                      language === "vi" ? "₫" : "VND"
+                    }`}
                   />
                 </Link>
               ))}
@@ -215,7 +217,7 @@ const Slug = () => {
           </section>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

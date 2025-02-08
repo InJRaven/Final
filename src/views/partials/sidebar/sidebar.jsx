@@ -1,67 +1,69 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import "./sideBar.scss";
+import { AppContext } from "../../../context/AppContext";
 
-const SideBar = ({ menu }) => {
+const SideBar = () => {
+  const { sideMenu } = useContext(AppContext);
   const [openDropdown, setOpenDropdown] = useState(null); // Theo dõi dropdown nào đang mở
 
   return (
-    <aside className="w-full h-fit bg-light border border-light-active flex flex-col  items-stretch rounded-md sidebar">
-      {menu.map((item, index) => (
-        <div
-          key={item.id}
-          className="w-full border-b last:border-none border-gray-500"
-          onMouseEnter={() => setOpenDropdown(index)} // Giữ dropdown mở khi hover
-          onMouseLeave={() => setOpenDropdown(null)} // Đóng dropdown khi rời chuột khỏi element
-        >
-          {item.children && item.children.length > 0 ? (
-            <div className="inline-flex w-full items-center justify-between text-sm xs:text-xs text-gray-600 font-medium transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 cursor-pointer first:rounded-md last:rounded-md ">
-              <span>{item.name}</span>
-              {openDropdown === index ? (
-                <ChevronDownIcon className="h-6 w-6" />
-              ) : (
-                <ChevronRightIcon className="h-6 w-6" />
-              )}
-            </div>
-          ) : (
-            <NavLink
-              to={`${item.url}`}
-              target="_blank"
-              className="inline-flex w-full items-center justify-between text-sm xs:text-xs text-gray-600 font-medium transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-[0.6rem] first:rounded-md last:rounded-md"
+    <div className="col-start-1 col-end-2 h-fit sticky top-4">
+      <aside className="w-full h-fit bg-light border border-light-active flex flex-col items-stretch rounded-md sidebar">
+        {sideMenu &&
+          sideMenu.length > 0 &&
+          sideMenu.map((item, index) => (
+            <div
+              key={item.id}
+              className="w-full border-b last:border-none border-gray-500"
+              onMouseEnter={() => setOpenDropdown(index)} // Giữ dropdown mở khi hover
+              onMouseLeave={() => setOpenDropdown(null)} // Đóng dropdown khi rời chuột khỏi element
             >
-              <span>
-                {item.name}
-                
-              </span>
-            </NavLink>
-          )}
-          {item.children &&
-            item.children.length > 0 &&
-            openDropdown === index && (
-              <div
-                className={`flex flex-col transition-all duration-300 overflow-hidden ${
-                  openDropdown === index
-                    ? "max-h-[500px] opacity-100 visible"
-                    : "max-h-0 opacity-0 invisible"
-                }`}
-              >
-                {item.children.map((child) => (
-                  <NavLink
-                    key={child.id}
-                    to={`/${item.url}`}
-                    target="_blank"
-                    className="inline-flex w-full items-center justify-between text-sm xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 pl-10 "
+              {item.children && item.children.length > 0 ? (
+                <div className="inline-flex w-full items-center justify-between text-sm xs:text-xs text-gray-600 font-medium transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 cursor-pointer first:rounded-md last:rounded-md ">
+                  <span>{item.name}</span>
+                  {openDropdown === index ? (
+                    <ChevronDownIcon className="h-6 w-6" />
+                  ) : (
+                    <ChevronRightIcon className="h-6 w-6" />
+                  )}
+                </div>
+              ) : (
+                <NavLink
+                  to={`${item.url}`} // Sử dụng hàm getResolvedPath để xử lý URL
+                  target="_blank"
+                  className="inline-flex w-full items-center justify-between text-sm xs:text-xs text-gray-600 font-medium transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-[0.6rem] first:rounded-md last:rounded-md"
+                >
+                  <span>{item.name}</span>
+                </NavLink>
+              )}
+              {item.children &&
+                item.children.length > 0 &&
+                openDropdown === index && (
+                  <div
+                    className={`flex flex-col transition-all duration-300 overflow-hidden ${
+                      openDropdown === index
+                        ? "max-h-[500px] opacity-100 visible"
+                        : "max-h-0 opacity-0 invisible"
+                    }`}
                   >
-                    {child.name}
-                    
-                  </NavLink>
-                ))}
-              </div>
-            )}
-        </div>
-      ))}
-    </aside>
+                    {item.children.map((child) => (
+                      <NavLink
+                        key={child.id}
+                        to={`${item.url}`} // Sử dụng hàm getResolvedPath
+                        target="_blank"
+                        className="inline-flex w-full items-center justify-between text-sm xs:text-xs text-gray-600 font-semibold transition duration-200 hover:text-dark hover:bg-gray-200 px-4 py-2 pl-10 "
+                      >
+                        {child.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+            </div>
+          ))}
+      </aside>
+    </div>
   );
 };
 

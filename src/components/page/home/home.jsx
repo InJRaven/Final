@@ -1,8 +1,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { AppContext } from "../../../context/AppContext";
 import { SettingContext } from "../../../context/SettingContext";
-import { getMenu, getRelated } from "../../../utils/utils";
-import SideBar from "../../../views/partials/sidebar/sidebar";
+import { getRelated } from "../../../utils/utils";
 import Advertisements from "./advertisements/Advertisements";
 import Section from "./section/section";
 import Banner from "./banner/banner";
@@ -13,7 +12,6 @@ const Home = () => {
   const { language } = useContext(AppContext);
   const { startLoading, stopLoading } = useLoading();
   const [related, setRelated] = useState([]);
-  const [menu, setMenu] = useState([]);
   const advertisements = useMemo(
     () => settings?.advertisements || [],
     [settings]
@@ -24,14 +22,14 @@ const Home = () => {
     const fetchData = async () => {
       startLoading(); // Hiển thị trạng thái loading
       try {
-        await Promise.all([fetchRelatedData(), fetchMenuData()]); // Chờ cả hai API hoàn tất
+        await fetchRelatedData(); // Chỉ cần gọi một lần API
       } catch (error) {
         console.log("Fetch Error: ", error);
       } finally {
         stopLoading(); // Ẩn trạng thái loading
       }
     };
-
+  
     fetchData();
   }, [language]);
   const fetchRelatedData = async () => {
@@ -50,24 +48,10 @@ const Home = () => {
       console.log("Fetch Related Error", error);
     }
   };
-  const fetchMenuData = async () => {
-    try {
-      const response = await getMenu();
-      if (response.status === 200) {
-        setMenu(response.data.data);
-      }
-    } catch (error) {
-      console.log("Fetch Related Error", error);
-    }
-  };
+  
 
   return (
-    <div className="relative w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3rem] xs:px-[1rem] py-[2rem]">
-      <div
-        className="col-start-1 col-end-2 h-fit sticky top-4" // Sidebar luôn cố định trong viewport
-      >
-        {menu && <SideBar menu={menu} />}
-      </div>
+    <>
       <div className="w-full col-start-2 col-end-6 flex flex-col gap-[2rem]">
         {banners && <Banner banners={banners} />}
         {related &&
@@ -90,7 +74,7 @@ const Home = () => {
       <div className="col-start-6 col-end-7 h-fit sticky top-4">
         {advertisements && <Advertisements advertisements={advertisements} />}
       </div>
-    </div>
+    </>
   );
 };
 export default Home;

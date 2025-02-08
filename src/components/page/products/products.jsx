@@ -100,8 +100,7 @@ const Products = () => {
     }
   ];
   return (
-    <div className="w-full grid grid-cols-6 gap-[2rem] xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem]">
-      <main className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
+    <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
         <section className="w-full flex flex-col gap-[1.6rem] py-[2rem] products">
           <div className="w-full inline-flex justify-between items-center">
             <div className="inline-flex gap-[1rem] items-center form-group">
@@ -173,8 +172,7 @@ const Products = () => {
             />
           )}
         </section>
-      </main>
-    </div>
+      </div>
   );
 };
 export default Products;

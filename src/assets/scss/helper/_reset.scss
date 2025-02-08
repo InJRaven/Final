@@ -23,3 +23,8 @@ section,
 option {
   @apply font-sans;
 }
+
+
+.padding-page{
+  @apply  xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem];
+}
