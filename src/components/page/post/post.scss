@@ -3,6 +3,29 @@
 }
 
 .post-content {
+
+  @apply p-[1.6rem] flex flex-col gap-[0.5rem] rounded-md shadow-post;
+  h2 {
+    @apply text-[2rem];
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h2,
+  p {
+    @apply text-md;
+  }
+  ul,
+  ol {
+    @apply px-[2rem];
+  }
+  blockquote {
+    @apply w-full text-center italic p-[1rem];
+    p {
+      @apply text-sm;
+    }
+  }
+
   figure.image {
     display: flex;
     justify-content: center;

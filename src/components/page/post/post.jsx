@@ -45,7 +45,7 @@ const Post = () => {
     fetchData();
   }, [language, url, setTitle, setMetaTag]); // Chỉ theo dõi thay đổi language và url
 
-  const postContent = useMemo(() => {
+  const sanitizedHtml = useMemo(() => {
     // Kiểm tra xem post có tồn tại và có content hay không
     if (post?.[0]?.content) {
       return DOMPurify.sanitize(post[0].content); // Chỉ sanitize nếu có content
@@ -56,10 +56,12 @@ const Post = () => {
     <>
       <div className="w-full col-start-2 col-end-6 flex flex-col gap-[2rem]">
         {post && post.length > 0 ? (
-          <div
-            dangerouslySetInnerHTML={{ __html: postContent }}
-            className="post-content p-[1.6rem] !text-md break-words"
-          />
+          <div className="">
+            <div
+              dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
+              className="post-content text-md"
+            />
+          </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-full">
             <ImSpinner10 className="w-16 h-16 text-gray-900 animate-spin mb-4" />

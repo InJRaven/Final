@@ -179,7 +179,7 @@ const Slug = () => {
               <span className="w-full h-[1px] bg-gray-900"></span>
               <div
                 dangerouslySetInnerHTML={{ __html: short_description }}
-                className="!text-md break-words mt-[0.5rem]"
+                className="text-md break-words mt-[0.5rem]"
               />
             </div>
           </section>
