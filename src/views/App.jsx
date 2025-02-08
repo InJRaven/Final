@@ -79,8 +79,9 @@ function App() {
           name: `${language === "vi" ? "Liên Hệ" : "Contact"}`,
           title: `${language === "vi" ? "Liên Hệ" : "Contact"}`,
         },
+
         {
-          path: "menus/:id/post",
+          path: "/:url",
           element: <Post />,
         },
       ],

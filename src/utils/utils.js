@@ -17,4 +17,4 @@ export const getCategoriesGallery = () => instance.get("/categories");
 export const getGallery = (param) =>
   instance.get("/galleries", { params: param });
 
-export const getPost = (id) => instance.get(`/menus/${id}/posts`);
+export const getPost = (url) => instance.get(`/menus/${url}`);

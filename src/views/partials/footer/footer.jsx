@@ -23,12 +23,7 @@ const Footer = () => {
       website: "Dariusphan.com",
     },
   ];
-  const [setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsLoading(false), 1000); // Simulate loading time
-    return () => clearTimeout(timeout);
-  }, []);
   const selectedCompany = language === "vi" ? company[0] : company[1];
   return (
     <footer className="footer">

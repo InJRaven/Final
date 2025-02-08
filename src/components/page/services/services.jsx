@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import { AppContext } from "../../../context/AppContext";
 import { getServices } from "../../../utils/utils";
-import "./services.scss";
 import { useLoading } from "../../../context/LoadingContext";
+import "./services.scss";
 const Services = () => {
   const { language } = useContext(AppContext);
   const { startLoading, stopLoading } = useLoading();
@@ -36,7 +36,7 @@ const Services = () => {
       <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
         <div
           dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-          className="p-[1.6rem] flex flex-col gap-[1.6rem] !text-md !font-medium break-words"
+          className="services-content p-[1.6rem] flex flex-col gap-[1.6rem] !text-md !font-medium break-words"
         />
       </div>
     </div>

@@ -16,27 +16,25 @@ const Post = () => {
   const { language } = useContext(AppContext);
   const { setTitle, setMetaTag } = useDynamicHelmet();
   const { startLoading, stopLoading } = useLoading();
-  const { id } = useParams();
-
+  const { url } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       startLoading();
       try {
         const [menuResponse, postResponse] = await Promise.all([
           getMenu(),
-          getPost(id),
+          getPost(url),
         ]);
 
         if (menuResponse.status === 200) {
           setMenu(menuResponse.data.data);
+
         }
 
         if (postResponse.status === 200) {
           const fetchedPost = postResponse.data.data.posts;
-          console.log(postResponse.data.data);
-
+          
           setPost(fetchedPost);
-
           const postTitle = fetchedPost[0]?.title || "Loading Post";
           const postThumbnail = fetchedPost[0]?.thumbnail || "Loading";
 
@@ -54,7 +52,8 @@ const Post = () => {
     };
 
     fetchData();
-  }, [language, id]);
+  }, [language, url, setTitle, setMetaTag]);
+
 
   const sanitizedHtml =
     post && post.length > 0 && post[0]?.content
@@ -68,12 +67,14 @@ const Post = () => {
         {post && post.length > 0 ? (
           <div
             dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-            className="p-[1.6rem] !text-md !font-medium break-words"
+            className="post-content p-[1.6rem] !text-md break-words"
           />
         ) : (
           <div className="flex flex-col items-center justify-center h-full">
             <ImSpinner10 className="w-16 h-16 text-gray-900 animate-spin mb-4" />
-            <p className="text-gray-600 text-lg font-semibold">Loading Post...</p>
+            <p className="text-gray-600 text-lg font-semibold">
+              Loading Post...
+            </p>
           </div>
         )}
       </div>

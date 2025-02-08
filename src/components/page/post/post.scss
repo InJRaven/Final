@@ -1,9 +1,23 @@
-.heading{
-    display: none !important;
+.heading {
+  display: none !important;
 }
 
-figure.image{
+.post-content {
+  figure.image {
     display: flex;
     justify-content: center;
     align-items: start;
+  }
+
+  figure.table {
+    @apply w-full flex items-center justify-center mt-[5rem];
+    table {
+      @apply w-[80%];
+      tbody {
+        tr td {
+          @apply border border-gray-900 p-[0.8rem] break-words;
+        }
+      }
+    }
+  }
 }
