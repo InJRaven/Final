@@ -7,6 +7,7 @@ import "./post.scss";
 import { useLoading } from "../../../context/LoadingContext";
 import { getPost } from "../../../utils/utils"; // Chỉ cần gọi API cho post
 import { ImSpinner10 } from "react-icons/im";
+import DangerouslySetInnerHTML from "../../ui/DangerouslySetInnerHTML/DangerouslySetInnerHTML";
 
 const Post = () => {
   const [post, setPost] = useState([]);
@@ -56,12 +57,7 @@ const Post = () => {
     <>
       <div className="w-full col-start-2 col-end-6 flex flex-col gap-[2rem]">
         {post && post.length > 0 ? (
-          <div className="">
-            <div
-              dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-              className="post-content text-md"
-            />
-          </div>
+          <DangerouslySetInnerHTML content={sanitizedHtml} className='post-content text-md'/>
         ) : (
           <div className="flex flex-col items-center justify-center h-[70vh]">
             <ImSpinner10 className="w-16 h-16 text-gray-900 animate-spin mb-4" />

@@ -1,13 +1,24 @@
 .services-content {
-  figure.table {
-    @apply w-full flex items-center justify-center mt-[5rem];
-    table {
-      @apply w-[80%];
-      tbody {
-        tr td {
-          @apply border border-gray-900 p-[0.8rem] break-words;
-        }
-      }
+  @apply p-[1.6rem] flex flex-col gap-[0.5rem] text-md break-words;
+  h1 {
+    @apply text-display-sm;
+  }
+  h2 {
+    @apply text-[2rem] !leading-[3rem];
+  }
+  h3 {
+    @apply text-lg;
+  }
+
+  ul,
+  ol {
+    @apply px-[2rem];
+  }
+
+  blockquote {
+    @apply w-full text-center italic p-[1rem];
+    p {
+      @apply text-sm;
     }
   }
 }
