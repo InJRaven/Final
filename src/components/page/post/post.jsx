@@ -66,7 +66,7 @@ const Post = () => {
     <>
       <div className="w-full col-start-2 col-end-6 flex flex-col gap-[2rem]">
         {post && post.length > 0 ? (
-          <DangerouslySetInnerHTML content={sanitizedHtml} className='post-content text-md'/>
+          <DangerouslySetInnerHTML content={sanitizedHtml} className='post-content'/>
         ) : (
           <div className="flex flex-col items-center justify-center h-[70vh]">
             <ImSpinner10 className="w-16 h-16 text-gray-900 animate-spin mb-4" />
