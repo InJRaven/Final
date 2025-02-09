@@ -4,11 +4,11 @@ import { useDynamicHelmet } from "../../context/DynamicHelmetContext";
 import { SettingContext } from "../../context/SettingContext";
 import { useFullUrl } from "../useFullUrl/useFullUrl";
 
-
-const ApplyHelmet = ({ routesConfig  }) => {
+const ApplyHelmet = ({ routesConfig }) => {
   const { setTitle, setMetaTag } = useDynamicHelmet();
   const { settings, loading } = useContext(SettingContext);
-  const fullUrl = useFullUrl()
+  
+  const fullUrl = useFullUrl();
 
   useEffect(() => {
     if (loading || !settings) return;
@@ -20,17 +20,19 @@ const ApplyHelmet = ({ routesConfig  }) => {
     });
 
     // Nếu tìm thấy route, cập nhật title
+
     if (route) {
-        setTitle(route.title || settings?.settings?.title || "Loading");
-        setMetaTag({
-          ogTitle: route.title || settings?.settings?.title || "Default Title",
-          ogType: "article",
-          ogUrl: fullUrl,
-          description: settings?.settings?.description || "Default description",
-          ogImage: settings?.settings?.thumbnail || "default.jpg",
-          favicon: settings?.settings?.logo || "/default-favicon.png",
-        });
-      }
+      const title = route.title || settings?.settings?.title || "Loading";
+      setTitle(title);
+      setMetaTag({
+        ogTitle: route.title || settings?.settings?.title || "Default Title",
+        ogType: "article",
+        ogUrl: fullUrl,
+        description: settings?.settings?.description || "Default description",
+        ogImage: settings?.settings?.thumbnail || "default.jpg",
+        favicon: settings?.settings?.logo || "/default-favicon.png",
+      });
+    }
   }, [location.pathname, setTitle, routesConfig, setMetaTag, fullUrl]);
 
   return null;
