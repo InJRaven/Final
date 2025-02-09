@@ -4,6 +4,7 @@ import { AppContext } from "../../../context/AppContext";
 import { getServices } from "../../../utils/utils";
 import { useLoading } from "../../../context/LoadingContext";
 import "./services.scss";
+import DangerouslySetInnerHTML from "../../ui/DangerouslySetInnerHTML/DangerouslySetInnerHTML";
 const Services = () => {
   const { language } = useContext(AppContext);
   const { startLoading, stopLoading } = useLoading();
@@ -33,10 +34,7 @@ const Services = () => {
 
   return (
     <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
-      <div
-        dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-        className="services-content p-[1.6rem] flex flex-col gap-[1.6rem] !text-md !font-medium break-words"
-      />
+      <DangerouslySetInnerHTML content={sanitizedHtml} className='services-content text-md'/>
     </div>
   );
 };

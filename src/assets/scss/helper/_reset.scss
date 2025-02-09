@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap");
 *,
 *::after,
 *::before {
@@ -9,13 +9,8 @@
   @apply font-roboto;
 }
 
-body {
-  position: relative;
-}
 #root {
-  position: relative;
-  min-height: 100vh;
-  height: 100%;
+  @apply relative min-h-screen h-full;
 }
 
 input,
@@ -24,11 +19,17 @@ option {
   @apply font-sans;
 }
 
-
-.padding-page{
-  @apply  xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem];
+.padding-page {
+  @apply xs:gap-[1rem] px-[3.2rem] xs:px-[1rem] py-[2rem];
 }
 
-ul, ol{
-  list-style-type: disc;
+ul,
+ol {
+  @apply list-disc;
 }
+
+// table,
+// td,
+// th {
+//   @apply border border-gray-900;
+// }

@@ -3,7 +3,6 @@
 }
 
 .post-content {
-
   @apply p-[1.6rem] flex flex-col gap-[0.5rem] rounded-md shadow-post;
   h2 {
     @apply text-[2rem];
@@ -11,10 +10,8 @@
   h3 {
     @apply text-lg;
   }
-  h2,
-  p {
-    @apply text-md;
-  }
+
+  
   ul,
   ol {
     @apply px-[2rem];
@@ -24,12 +21,6 @@
     p {
       @apply text-sm;
     }
-  }
-
-  figure.image {
-    display: flex;
-    justify-content: center;
-    align-items: start;
   }
 
   figure.table {
@@ -42,5 +33,10 @@
         }
       }
     }
+  }
+  table,
+  td,
+  th {
+    @apply border border-gray-900;
   }
 }
