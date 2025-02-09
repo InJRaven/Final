@@ -21,7 +21,7 @@ const ApplyHelmet = ({ routesConfig }) => {
 
     // Nếu tìm thấy route, cập nhật title
 
-    if (route && !document.title) {
+    if (route) {
       const title = route.title || settings?.settings?.title || "Loading";
       setTitle(title);
       setMetaTag({
