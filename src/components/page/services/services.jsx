@@ -33,7 +33,7 @@ const Services = () => {
       : "";
 
   return (
-    <div className="w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
+    <div className="padding-page w-full col-start-2 col-span-4 flex flex-col gap-[2rem]">
       <DangerouslySetInnerHTML content={sanitizedHtml} className='services-content' />
     </div>
   );

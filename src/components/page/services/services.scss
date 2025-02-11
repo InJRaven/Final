@@ -1,5 +1,5 @@
 .services-content {
-  @apply p-[1.6rem] flex flex-col gap-[0.5rem] text-md break-words;
+  @apply p-[1.6rem] flex flex-col gap-[0.5rem] text-md break-words border-4 border-double border-gray-900;
   h1 {
     @apply text-display-sm;
   }
