@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://botvx.pro/api/v1/";
+const BASE_URL = "https://admin.dariusphan.com/api/v1/";
 
 const instance = axios.create({
   baseURL: BASE_URL,

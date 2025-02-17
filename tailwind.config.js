@@ -59,7 +59,7 @@ module.exports = {
         header: "0px 4px 4px 0px rgba(0, 0, 0, 0.10)",
         card: "0px 6.5px 8.667px -2.167px rgba(10, 13, 18, 0.1), 0px 2.167px 3.25px -1.083px rgba(10, 13, 18, 0.1), 0px 1.083px 1.083px -0.542px rgba(10, 13, 18, 0.1)",
         button: "-2px 4px 7px 0px rgba(0, 0, 0, 0.25)",
-        post: '0 2px 4px rgba(0, 0, 0, 0.2)',
+        post: '0 1px 4px rgba(0, 0, 0, 0.3)',
       },
       screens: {
         xl: { max: "1200px" }, // => @media (max-width: 1200px) { ... }
